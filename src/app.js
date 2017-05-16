@@ -6,15 +6,17 @@ Vue.use(VueMaterial);
 
 Vue.component('vue-toolbar', require('./vue-components/toolbar.vue'));
 Vue.component('vue-sidenav', require('./vue-components/sidenav.vue'));
+var map;
 var bus = new Vue();
 var App = new Vue({
     el: '#app',
     data: {
         bus: bus
+    },
+    mounted: function () {
+        // `this` points to the vm instance
+        map = new SMap();
+        console.log(map);
     }
 });
-
-$(document).ready(function(){
-   // $('#map').css('height',$(document).height()-15);
-    var map = new SMap();
-});
+console.log(map);

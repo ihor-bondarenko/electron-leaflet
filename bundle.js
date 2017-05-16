@@ -20355,18 +20355,20 @@ _vue2.default.use(_vueMaterial2.default);
 
 _vue2.default.component('vue-toolbar', __webpack_require__(5));
 _vue2.default.component('vue-sidenav', __webpack_require__(4));
+var map;
 var bus = new _vue2.default();
 var App = new _vue2.default({
     el: '#app',
     data: {
         bus: bus
+    },
+    mounted: function mounted() {
+        // `this` points to the vm instance
+        map = new _sm2.default();
+        console.log(map);
     }
 });
-
-(0, _jquery2.default)(document).ready(function () {
-    // $('#map').css('height',$(document).height()-15);
-    var map = new _sm2.default();
-});
+console.log(map);
 
 /***/ }),
 /* 10 */
