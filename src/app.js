@@ -18,7 +18,6 @@ var App = new Vue({
         createMarker() {
             var lon = -0.09;
             var lat = 51.5;
-            console.log('marcer create event');
             Map.createMarker(lat,lon);
         }
     },
