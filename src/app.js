@@ -6,17 +6,29 @@ Vue.use(VueMaterial);
 
 Vue.component('vue-toolbar', require('./vue-components/toolbar.vue'));
 Vue.component('vue-sidenav', require('./vue-components/sidenav.vue'));
-var map;
+var Map;
 var bus = new Vue();
 var App = new Vue({
     el: '#app',
     data: {
-        bus: bus
+        bus: bus,
+        markers: []
+    },
+    methods: {
+        createMarker() {
+            var lon = -0.09;
+            var lat = 51.5;
+            console.log('marcer create event');
+            Map.createMarker(lat,lon);
+        }
     },
     mounted: function () {
-        // `this` points to the vm instance
-        map = new SMap();
-        console.log(map);
+        //this.$set(this.$data,'Map', new SMap());
+        Map = new SMap();
+        Map.getMarkersList();
+
+        this.bus.$on('create-marker', (e) => {
+            this.createMarker();
+        });
     }
 });
-console.log(map);
