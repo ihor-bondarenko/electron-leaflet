@@ -22,6 +22,7 @@ class SMap {
         this.markers = [];
         this.init(id);
         let icon = new defaultIcon();
+        let icn = new L.Icon();
         /*
         let markerLocation = new L.LatLng(51.5, -0.09);
         L.marker(markerLocation, {icon: icon}).addTo(this.map);

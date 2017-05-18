@@ -27,10 +27,10 @@ class mapDefault extends MapSuper {
     }
 
     addTileLayer() {
-        let l = mtbLayer.layer();
+        let l = new stamenLayer();
         this.tilesLayerGroup.addLayer(l);
         this.tilesLayerGroup.eachLayer(function (layer) {
-           console.log(layer);
+           //console.log(layer);
         });
         //l.addTo(this.Map);
         //console.log(this.tilesLayers);

@@ -1,4 +1,4 @@
-class defaultIcon extends  L.Icon.Default {
+class defaultIcon extends L.Icon.Default {
     constructor() {
         super();
         this.options = {
@@ -6,6 +6,8 @@ class defaultIcon extends  L.Icon.Default {
             shadowUrl: 'marker-shadow.png'
         }
     }
+
+
 }
 
 export default defaultIcon;
