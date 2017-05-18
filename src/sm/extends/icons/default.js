@@ -3,7 +3,7 @@ class defaultIcon extends  L.Icon.Default {
         super();
         this.options = {
             iconUrl: 'default-icon.png',
-            shadowUrl: 'marker-shadow.png',
+            shadowUrl: 'marker-shadow.png'
         }
     }
 }

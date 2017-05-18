@@ -19,6 +19,12 @@ var App = new Vue({
             var lon = -0.09;
             var lat = 51.5;
             Map.createMarker(lat,lon);
+            /*for(var i = 0, j = 20; i<j; i++) {
+                Map.createMarker(lat,lon + 0.01);
+            }*/
+        },
+        addTileLayer(){
+            Map.addTileLayer();
         }
     },
     mounted: function () {
@@ -28,6 +34,12 @@ var App = new Vue({
 
         this.bus.$on('create-marker', (e) => {
             this.createMarker();
+        });
+        this.bus.$on('show-new-layer', (e) => {
+            Map.addTileLayer();
+        });
+        this.bus.$on('delete-new-layer', (e) => {
+            Map.deleteTileLayer();
         });
     }
 });
