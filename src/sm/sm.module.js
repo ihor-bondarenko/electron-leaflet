@@ -20,9 +20,8 @@ class SMap {
     constructor(id) {
         this.defaultMap = null;
         this.markers = [];
-        this.init(id);
-        let icon = new defaultIcon();
-        let icn = new L.Icon();
+        //let icon = new defaultIcon();
+        //let icn = new L.Icon();
         /*
         let markerLocation = new L.LatLng(51.5, -0.09);
         L.marker(markerLocation, {icon: icon}).addTo(this.map);
@@ -42,11 +41,13 @@ class SMap {
     }
 
     init(id) {
-        this.map = new mapDefault(id || 'map');
-        this.map.init().then( e => {
-
-            //this.defaultMap.Map.remove();
-        });
+        return new Promise(
+            (resolve, reject) => {
+                this.map = new mapDefault(id || 'map');
+                this.map.init().then( e => {
+                    resolve();
+                });
+            });
         //console.log(this.map);
        /* this.map = new mapDefault(id || 'map').map().setView([51.505, -0.09], 13);
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -67,11 +68,12 @@ class SMap {
     }
 
     createMarker(lat, lon) {
-        L.marker([lat, lon], {draggable: true}).addTo(this.map.Map);
+       // L.marker([lat, lon], {draggable: true}).addTo(this.map.Map);
+        this.map.MapLayers.renameLayer('stamenLayer', 'Stamen Layer');
     }
 
-    addTileLayer(){
-        this.map.addTileLayer();
+    addTileLayer(layer){
+        this.map.addTileLayerToMap(layer);
     }
 
     addMarker(marker) {

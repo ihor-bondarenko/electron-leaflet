@@ -12,7 +12,8 @@ var App = new Vue({
     el: '#app',
     data: {
         bus: bus,
-        markers: []
+        markers: [],
+        tileLayersList: []
     },
     methods: {
         createMarker() {
@@ -30,7 +31,10 @@ var App = new Vue({
     mounted: function () {
         //this.$set(this.$data,'Map', new SMap());
         Map = new SMap();
-        Map.getMarkersList();
+        Map.init().then(e => {
+            this.tileLayersList = Map.map.MapLayers.layerList.tiles;
+            console.log( this.tileLayersList);
+        });
 
         this.bus.$on('create-marker', (e) => {
             this.createMarker();
@@ -40,6 +44,9 @@ var App = new Vue({
         });
         this.bus.$on('delete-new-layer', (e) => {
             Map.deleteTileLayer();
+        });
+        this.bus.$on('set-map-tiles-layer', (e) => {
+          Map.addTileLayer(e);
         });
     }
 });
