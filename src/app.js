@@ -4,6 +4,36 @@ import Vue from 'vue';
 import VueMaterial from 'vue-material';
 Vue.use(VueMaterial);
 
+/*import rethinkdb from 'rethinkdb';
+
+rethinkdb.connect({ host: 'http://127.0.0.1', port: 28015 }, function(err, conn) {
+    console.log(err);
+    if(err) throw err;
+    console.log(conn);
+    r.db('test').tableCreate('tv_shows').run(conn, function(err, res) {
+        if(err) throw err;
+        console.log(res);
+        r.table('tv_shows').insert({ name: 'Star Trek TNG' }).run(conn, function(err, res)
+        {
+            if(err) throw err;
+            console.log(res);
+        });
+    });
+});
+*/
+const WebSocket = require('ws');
+
+const ws = new WebSocket('ws://localhost:8081');
+
+ws.on('open', function open() {
+    console.log('-- ws opened --');
+    ws.send('something');
+});
+
+ws.on('message', function incoming(data) {
+    console.log(data);
+});
+
 Vue.component('vue-toolbar', require('./vue-components/toolbar.vue'));
 Vue.component('vue-sidenav', require('./vue-components/sidenav.vue'));
 var Map;
@@ -33,7 +63,7 @@ var App = new Vue({
         Map = new SMap();
         Map.init().then(e => {
             this.tileLayersList = Map.map.MapLayers.layerList.tiles;
-            console.log( this.tileLayersList);
+            //console.log( this.tileLayersList);
         });
 
         this.bus.$on('create-marker', (e) => {
