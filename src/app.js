@@ -21,18 +21,15 @@ rethinkdb.connect({ host: 'http://127.0.0.1', port: 28015 }, function(err, conn)
     });
 });
 */
-const WebSocket = require('ws');
-
+/*const WebSocket = require('ws');
 const ws = new WebSocket('ws://localhost:8081');
-
 ws.on('open', function open() {
     console.log('-- ws opened --');
     ws.send('something');
 });
-
 ws.on('message', function incoming(data) {
     console.log(data);
-});
+});*/
 
 Vue.component('vue-toolbar', require('./vue-components/toolbar.vue'));
 Vue.component('vue-sidenav', require('./vue-components/sidenav.vue'));
@@ -77,6 +74,15 @@ var App = new Vue({
         });
         this.bus.$on('set-map-tiles-layer', (e) => {
           Map.addTileLayer(e);
+        });
+
+        let socket = io.connect('http://localhost:8089/', {reconnect: true});
+
+        socket.on('connect', function (s) {
+            console.log('Connected!');
+            socket.on('news', function(d){
+                console.log(d)
+            })
         });
     }
 });
