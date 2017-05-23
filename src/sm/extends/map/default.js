@@ -28,11 +28,11 @@ class mapDefault extends MapSuper {
                     var latlngs = [
                         [51.49621, 31.30013]
                     ];
-                    setInterval(() => {
+                    /*setInterval(() => {
                         lon += 0.0003;
                         latlngs.push([51.49621, lon+0.0001]);
                         this.testMarkers(lat, lon, latlngs);
-                    }, 5000);
+                    }, 5000);*/
                     resolve();
                 }).catch(e => {
                     reject();
@@ -58,7 +58,7 @@ class mapDefault extends MapSuper {
         let polyline = L.polyline(latlngs, {color: 'red'});
 
         this.MapMarkers.markersGroup.clearLayers();
-        console.log(this.Map);
+        //console.log(this.Map);
         for(var i = 0, j = 1; i<j; i++) {
            // markers.push(L.marker([lat, lon + 0.0001]));
             lon += 0.0001;
@@ -66,6 +66,16 @@ class mapDefault extends MapSuper {
         }
        // this.MapMarkers.markersGroup.addLayer(markers);
        // this.MapMarkers.markersGroup
+    }
+    addMarker(markers) {
+        console.log('received markers');
+        this.MapMarkers.markersGroup.clearLayers();
+        for(var i in markers) {
+            if(markers.hasOwnProperty(i)){
+                this.MapMarkers.markersGroup.addLayer(L.marker([markers[i]['location']['coordinates'][1], markers[i]['location']['coordinates'][0]]));
+            }
+        }
+        //this.MapMarkers.markersGroup.clearLayers();
     }
 }
 

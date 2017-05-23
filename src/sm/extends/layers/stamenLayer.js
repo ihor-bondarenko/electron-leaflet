@@ -29,7 +29,7 @@ class stamenLayer {
 
     Layer(url ,options){
         let _url = url || this._url;
-        console.log(this);
+       // console.log(this);
         let _options = Object.assign({}, options, this.options);
         return new StamenLayer(_url , _options);
     }

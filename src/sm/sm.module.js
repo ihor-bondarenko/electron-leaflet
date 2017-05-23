@@ -67,9 +67,9 @@ class SMap {
         _.pullAt(markers, _.findIndex(markers, markers[0]));
     }
 
-    createMarker(lat, lon) {
+    createMarker(markers) {
        // L.marker([lat, lon], {draggable: true}).addTo(this.map.Map);
-        this.map.MapLayers.renameLayer('stamenLayer', 'Stamen Layer');
+        this.map.addMarker(markers);
     }
 
     addTileLayer(layer){
